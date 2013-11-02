@@ -1,6 +1,7 @@
 package db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -30,5 +31,23 @@ public class OrarDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
         sqLiteDatabase.execSQL(SQL_DELETE);
         onCreate(sqLiteDatabase);
+    }
+
+    public static long addOrarEntry(SQLiteDatabase db, OrarEntry entry)
+    {
+        return db.replace(OrarEntry.TABLE_NAME,null,entry.getContentValues());
+    }
+
+    public static Cursor getAllOrarEntries(SQLiteDatabase db)
+    {
+        return db.query(OrarEntry.TABLE_NAME, //table name
+                new String[]{OrarEntry.COLUMN_NAME, OrarEntry.COLUMN_URL}, //selected rows
+                null, //where clause
+                null, //arguments for where clause
+                null, //do not group results
+                null, //do not filter the groups
+                null  //do not order the results
+        );
+
     }
 }
