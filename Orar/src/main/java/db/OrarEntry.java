@@ -1,9 +1,11 @@
 package db;
 
 import android.content.ContentValues;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 /**
@@ -14,6 +16,8 @@ public class OrarEntry implements BaseColumns {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_URL = "url";
 
+    public static final String BASE_PATH = "orar";
+    public static final Uri CONTENT_URI = Uri.fromParts("content://", OrarDbHelper.AUTHORITY + '/' + BASE_PATH, null);
     public String name;
     public URL url;
 

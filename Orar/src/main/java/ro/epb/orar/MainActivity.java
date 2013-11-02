@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
                     for(Element element : orars)
                     {
                         String href = element.attr("abs:href");
-                        href = href.replace(" ","%20");//fix because unitbv webdevs are special
+                        href = href.replace(" ","%20");//fix because unitbv webdevs are special //fix with this http://developer.android.com/reference/android/net/Uri.html
                         URL url = new URL(href);
                         HttpURLConnection con = (HttpURLConnection) url.openConnection();
                         con.setRequestMethod("HEAD");

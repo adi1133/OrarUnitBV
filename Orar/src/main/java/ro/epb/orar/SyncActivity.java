@@ -16,9 +16,6 @@ public class SyncActivity extends Activity {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View rootView = inflater.inflate(R.layout.activity_sync, null, false);
-        ListView orarListView = (ListView) rootView.findViewById(R.id.orarListView);
-        String[] data = {"asd", "dada"};
-        orarListView.setAdapter(new ArrayAdapter<String>(this,R.layout.orar_cell, R.id.left, data ));
         setContentView(rootView);
 
     }
