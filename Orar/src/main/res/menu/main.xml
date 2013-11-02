@@ -3,4 +3,10 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+
+    <item android:id="@+id/sync_activity"
+        android:title="Sync"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:showAsAction="ifRoom"
+        />
 </menu>

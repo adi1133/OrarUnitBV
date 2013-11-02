@@ -1,9 +1,11 @@
 package ro.epb.orar;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -11,11 +13,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 
 public class MainActivity extends Activity {
@@ -30,16 +30,15 @@ public class MainActivity extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     Document doc = Jsoup.connect("http://www.unitbv.ro/iesc/Studenti/Orar.aspx").get();
                     final Elements orars = doc.select("a[href~=(?i)\\.xls$]:matches((?i)orar)");
                     String text = "";
                     for(Element element : orars)
                     {
-                        String href =element.attr("abs:href");
-
-                                URL url = new URL(href);
+                        String href = element.attr("abs:href");
+                        href = href.replace(" ","%20");//fix because unitbv webdevs are special
+                        URL url = new URL(href);
                         HttpURLConnection con = (HttpURLConnection) url.openConnection();
                         con.setRequestMethod("HEAD");
                         con.connect();
@@ -87,5 +86,16 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.sync_activity:
+                startActivity(new Intent(this,SyncActivity.class));
+
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
 }

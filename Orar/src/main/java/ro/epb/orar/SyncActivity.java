@@ -1,8 +1,7 @@
 package ro.epb.orar;
 
-import android.app.Service;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -23,7 +22,6 @@ public class SyncActivity extends Activity {
         setContentView(rootView);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
